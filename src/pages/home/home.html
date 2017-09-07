@@ -1,16 +1,59 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Home
+    </ion-title>
   </ion-navbar>
 </ion-header>
+<ion-content padding id="page1">
+  <h1 id="home-heading1" style="color:#000000;">
+    Primera prueba
+  </h1>
 
-<ion-content padding>
-  <h2>osmel calderon!</h2>
-  <p>
-    {{pana}}
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-card-content>
+  Hello World<br />
+
+  <button [navPush]="cartPage">clickAQUI</button>
+</ion-card-content>
+
+  <form id="home-form1">
+    <ion-searchbar placeholder="" name="" id="home-search1"></ion-searchbar>
+  </form>
+  <form id="home-form2">
+    <ion-item id="home-toggle1">
+      <ion-label>
+        Toggle
+      </ion-label>
+      <ion-toggle color="positive" checked="false"></ion-toggle>
+    </ion-item>
+  </form>
+  <ion-list id="home-list2">
+    <ion-item id="home-list-item-container1">
+      <div id="home-markdown3" class="show-list-numbers-and-dots">
+        <p style="margin-top:0px;color:#000000;">
+          Some friendly
+          <strong>
+            markdown
+          </strong>
+        </p>
+      </div>
+    </ion-item>
+  </ion-list>
+  <div id="home-markdown1" class="show-list-numbers-and-dots">
+    <p style="color:#000000;">
+      Some friendly
+      <strong>
+        markdown
+      </strong>
+    </p>
+  </div>
+  <div>
+    <img src="assets/img/swYhQVEQrKsN2uF650Ks_Capturadepantalla2017-08-31alas12.43.00.png" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+  </div>
+  <div style="position:relative;overflow:hidden;padding-bottom:56.25%;height:0;" id="home-video1">
+    <iframe src="https://www.youtube.com/embed/Xvjnoagk6GU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen width="560" height="315" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+  </div>
 </ion-content>
