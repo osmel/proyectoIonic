@@ -5,42 +5,74 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>cart</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>
+      Sonidos APP
+    </ion-title>
+    <ion-buttons>
+      <button ion-button *ngIf="!ordenando" (click) ="ordenando = true" > <!-- directamente cambio el valor a ordenado cdo de click-->
+           Ordenar
+      </button>
+      <button ion-button *ngIf="ordenando"(click) ="ordenando = false" > <!-- directamente cambio el valor a ordenado cdo de click-->
+          Terminar
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+   <!--para refrescar toda la pagina, cdo ordenado==false es decir cdo no este ordenando -->
+  <ion-refresher [enabled]="!ordenando" (ionRefresh)="recargarAnimales($event)">
+    <ion-refresher-content> </ion-refresher-content>
+  </ion-refresher>
 
-   
-<ion-list *ngFor="let anim of animales" >
+  <!--fin refrescar toda la pagina -->
+
+  <!-- <ion-list reorder="true" (ionItemReorder) ="reordenarAnimales($event)" >  -->
+  <ion-list [reorder]="ordenando" (ionItemReorder) ="reordenarAnimales($event)"> 
+    <ion-item-sliding *ngFor="let animal of animales; let i = index">
+          
+          <ion-item (click)="reproducir(animal)" >
+            <ion-avatar item-left>
+              <img [src]="animal.imagen" [alt]="animal.nombre">
+            </ion-avatar>
+            <h2>{{ animal.nombre }}</h2>
+             <ion-icon [hidden]="ordenando" *ngIf="!animal.reproduciendo" name="play" item-right></ion-icon>
+             <ion-icon [hidden]="ordenando" *ngIf="animal.reproduciendo" name="pause" item-right></ion-icon>
+          </ion-item>
+
+          <!-- opciones o botones a la derecha  -->
+          <ion-item-options side="right">
+              <button ion-button color="danger"
+                      (click)="borrarAnimal(i)">
+                <ion-icon name="trash"></ion-icon>
+                Borrar
+              </button>
+
+              <button ion-button color="primary">
+                    <ion-icon name="mail"></ion-icon>
+                    Email
+              </button>
+
+          </ion-item-options>
+
+          <!-- opciones o botones a la izquierda  -->
+        <ion-item-options side="left">  <!--botones:  ion-item-options -->
+            <button ion-button color="primary">
+              <ion-icon name="text"></ion-icon>
+              Text
+            </button>
+            <button ion-button color="secondary">
+              <ion-icon name="call"></ion-icon>
+              Call
+            </button>
+        </ion-item-options>
+
+        
 
 
-  
-  <ion-item>
-    <ion-avatar item-start>
-      <img src="assets/icon/favicon.ico">
-    </ion-avatar>
-    <h2>Finn</h2>
-    <h3>Don't Know What To Do!</h3>
-    <p>I've had a pretty messed up day. If we just...</p>
-  </ion-item>
-
-  <ion-item>
-    <ion-avatar item-start>
-      <img [src]="anim.imagen">
-    </ion-avatar>
-    <h2>{{anim.nombre}}</h2>
-    <p></p>
-  </ion-item>
-
-</ion-list>
-
-
-
-<button *ngIf="mayorMenor!='igual'" ion-button block (click)="ionViewDidLoad()">Adivina adiv</button>
+      </ion-item-sliding>
+  </ion-list>
 
 </ion-content>
